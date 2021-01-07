@@ -2,14 +2,15 @@ package com.tms;
 import java.util.Scanner;
 public class ShapeDemo {
     public static void main(String[] args) {
-        Box box = new Box(100, "Контейнер");
+        Box box = new Box(300, "Контейнер");
         Pyramid pyramid = new Pyramid("Пимамида", 5, 4);
-        Cylinder cylinder = new Cylinder(4, 2, "Цилиндр");
+        Cylinder cylinder = new Cylinder(3, 2, "Цилиндр");
         Ball ball = new Ball(1, "Шар");
         System.out.println("Объем контейнера: " + box.getVolume());
         System.out.println("Объем шара: " + ball.getVolume());
         System.out.println("Объем цилиндра: " + cylinder.getVolume());
         System.out.println("Объем пирамиды: " + pyramid.getVolume());
+
 
         Shape[] shapes = new Shape[3];
         shapes[0] = ball;
@@ -27,16 +28,15 @@ public class ShapeDemo {
             Scanner scanner = new Scanner(System.in);
             int inputShape = scanner.nextInt();
 
-            boolean isSpaceEnough = true;
-            if (isSpaceEnough) {
-                isSpaceEnough = box.add(shapes[inputShape]);
-                if (isSpaceEnough) {
-                    System.out.println("Фигура " + shapes[inputShape].getShapeName() + " добавлена");
-                } else {
-                    System.out.println("Фигура " + shapes[inputShape].getShapeName() + " не влазит в контейнер, попробуйте другую фигуру, объем которой меньше" +
-                            " оставшегося места в контейнере");
-                }
-            } else {
+
+
+            boolean isSpaceEnough = box.add(shapes[inputShape]);
+            if(isSpaceEnough){
+            System.out.println("Фигура " + shapes[inputShape].getShapeName() + " добавлена");
+        } else {
+            System.out.println("Фигура " + shapes[inputShape].getShapeName() + " не влазит в контейнер, попробуйте другую фигуру");
+            } if ((shapes[0].getVolume() > box.spaceAvailable) && (shapes[1].getVolume() > box.spaceAvailable) && (shapes[2].getVolume() > box.spaceAvailable)) {
+                System.out.println("В контейнере не осталось места ни для одной фигуры");
                 break;
             }
         }

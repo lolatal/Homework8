@@ -1,10 +1,11 @@
 package com.tms;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class Box extends Shape {
     public ArrayList<Shape> shapes = new ArrayList<>();
-    private double spaceAvailable;
+   public double spaceAvailable;
     private double volume;
 
     public Box(double available, String shapeName) {
@@ -18,15 +19,17 @@ public class Box extends Shape {
     }
 
     public boolean add(Shape shape) {
+
         if (spaceAvailable >= shape.getVolume()) {
-                shapes.add(shape);
-                spaceAvailable -= shape.getVolume();
-                System.out.println("Оставшийся объем в контейнере: " + spaceAvailable);
-                return true;
-        }else{
-                return false;
-            }
+            shapes.add(shape);
+            spaceAvailable -= shape.getVolume();
+            System.out.println("Оставшийся объем в контейнере: " + spaceAvailable);
+            return true;
+        } else {
+            return false;
         }
     }
+}
+
 
 
